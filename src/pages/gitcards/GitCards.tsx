@@ -10,24 +10,22 @@ const GitCards = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div>
-      <div className="item-container">
+    <div className="p-4">
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'flex-start' }}>
         {data &&
           data.map((item: Item, index: number) => (
-            <div key={index}>
+            <div key={index} style={{ flex: '1 1 calc(25% - 16px)', maxWidth: 'calc(25% - 16px)' }}>
               <Card
-                style={{ width: "500px",  margin: "10px" }}
-                key={index}
-                className="item-card"
+                style={{ width: "100%" ,height:"550px"}}
                 cover={
                   <img
-                    style={{ width:"300px" , height: "300px" }}
+                    style={{ width: "100%", height: "300px", objectFit: "cover" }}
                     alt={item.title}
                     src={item.image}
                   />
                 }
               >
-                <Card.Meta title={item.title} description={item.description} />
+                <Card.Meta title={item.title} description={item.description.slice(0,100)} />
                 <p>Category: {item.category}</p>
                 <p>Price: ${item.price}</p>
                 <Rate allowHalf disabled defaultValue={item.rating.rate} />
